@@ -1,5 +1,3 @@
-
-
 # HBase
 
 HBase 是一种类似于数据库的存储层，适用于结构化的存储，是一种列式的分布式数据库。HBase适合用来进行大数据的实时查询，ACID只支持单个Row级别。
@@ -188,7 +186,7 @@ graph TB
 
 ##### Read Amplification
 
-一个MemStore可能有多个HFile，因此每次读操作，可能因需要检查多个文件而影响性能。这就是读操作放大。
+一个MemStore可能有多个HFile，因此每次读操作，可能因需要检查多个文件而印象性能。这就是读操作放大。
 
 #### HBase Minor Compaction （压实）
 
