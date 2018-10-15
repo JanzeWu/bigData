@@ -23,6 +23,12 @@ Spark支持需要wide依赖的transformation， 比如groupByKey， reduceByKey�
 
 选择算子布局（arrangement of operators）的主要目的是减少shuffle的次数和数据量。这是因为shuffle是相当消耗资源的操作，必须将数据写入磁盘，然后通过网络传输。`repartition`， `join`，`cogroup`和任何包含`*By` 或者`ByKey`的转换，都会引发shuffle。
 
+###### shuffle过程应尽量减少map端的输出，尽可能在map端combine后再输出，减少网络IO。
+
+`rdd.groupByKey().mapValues(_.sum)`与`rdd.reduceByKey(_ + _)`产生同样的结果。但是，前者将在集群网络中传输整个数据集，而后者将对本地每个分区的每个key计算总和，然后通过shuffle将本地的和合并。
+
+
+
 
 ## 什么时候不发生shuffle
 
